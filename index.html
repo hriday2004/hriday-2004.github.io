@@ -1,0 +1,18 @@
+from aiogram import Bot, Dispatcher, types
+from aiogram.utils import executor
+
+TOKEN = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"
+MONETAG_AD_URL = "https://monetag.com/ad-zone/9092731"
+
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+
+@dp.message_handler(commands=['start'])
+async def start_command(message: types.Message):
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button = types.KeyboardButton("🎬 Watch Ad", web_app=types.WebAppInfo(url=MONETAG_AD_URL))
+    keyboard.add(button)
+    await message.reply("Click below to watch an ad and earn rewards!", reply_markup=keyboard)
+
+if __name__ == "__main__":
+    executor.start_polling(dp, skip_updates=True)
