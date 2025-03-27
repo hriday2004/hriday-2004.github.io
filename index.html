@@ -15,7 +15,7 @@
 
     <div class="container">
         <h1>Ad Watching App</h1>
-        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/2</h2>
+        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/10</h2>
 
         <div class="progress-circle" id="progress-circle">0%</div>
 
@@ -47,7 +47,7 @@
         let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 8.00);
 
         document.getElementById('watched-ads').textContent = watchedAds;
-        document.getElementById('earned-points').textContent = earnedPoints.toFixed(10);
+        document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
 
         updateProgressBar();
 
