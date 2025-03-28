@@ -1,18 +1,49 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Ad & Earn</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #ad-container {
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Watch an Ad & Earn Rewards</h1>
+    <p>Click the button below to watch an ad and earn rewards.</p>
+    
+    <div id="ad-container">
+        <script async type="application/javascript" src="//pl23142534.highcpmrevenuegate.com/2b/92/8e/2b928e12b57bfe62990f9c63284186bb.js"></script>
+    </div>
+    
+    <a href="#" class="btn" onclick="loadAd()">Watch Ad</a>
 
-TOKEN = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"
-MONETAG_AD_URL = "https://monetag.com/ad-zone/9092731"
-
-bot = Bot(token=TOKEN)
-dp = Dispatcher(bot)
-
-@dp.message_handler(commands=['start'])
-async def start_command(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button = types.KeyboardButton("ðŸŽ¬ Watch Ad", web_app=types.WebAppInfo(url=MONETAG_AD_URL))
-    keyboard.add(button)
-    await message.reply("Click below to watch an ad and earn rewards!", reply_markup=keyboard)
-
-if __name__ == "__main__":
-    executor.start_polling(dp, skip_updates=True)
+    <script>
+        function loadAd() {
+            window.open("https://monetag.com/ad-zone/9092731", "_blank");
+        }
+    </script>
+</body>
+</html>
