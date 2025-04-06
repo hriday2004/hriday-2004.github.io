@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-<html lang="en"><!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ad Watching Mini App</title>
     <style>
-        /* Add your styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .progress-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(#4caf50 0%, #ccc 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px auto;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+        .withdraw-section {
+            margin-top: 20px;
+        }
+        input, select {
+            width: 80%;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -15,11 +66,11 @@
 
     <div class="container">
         <h1>Ad Watching App</h1>
-        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/2</h2>
+        <h2>সর্বনিম্ন উইথড্র এমাউন্ট ৳20</h2>
 
         <div class="progress-circle" id="progress-circle">0%</div>
 
-        <p>Watched Ads: <span id="watched-ads"></span></p>
+        <p>Watched Ads: <span id="watched-ads">0</span></p>
         <p>Earned Points: <span id="earned-points">0.00</span></p>
 
         <button id="watch-ad-btn">Watch Ad</button>
@@ -30,159 +81,33 @@
             <h3>Withdraw Funds</h3>
             <input type="number" id="withdraw-amount" placeholder="Enter Amount">
             <select id="payment-method">
-                <option value="Manual">Manual</option>
                 <option value="Bkash">Bkash</option>
                 <option value="Nagad">Nagad</option>
-            </select>
-            <input type="text" id="phone-number" placeholder="Enter Your Number">
-            <input type="text" id="telegram-username" placeholder="Your Telegram Username">
-        </div>
-
-        <button id="submit-withdraw">Submit</button>
-
-    </div>
-
-    <script>
-        let watchedAds = parseInt(localStorage.getItem('watchedAds') || (10);
-        let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 8.00);
-
-        document.getElementById('watched-ads').textContent = watchedAds;
-        document.getElementById('earned-points').textContent = earnedPoints.toFixed(10);
-
-        updateProgressBar();
-
-        document.getElementById('watch-ad-btn').addEventListener('click', watchAd);
-        document.getElementById('withdraw-btn').addEventListener('click', toggleWithdraw);
-        document.getElementById('submit-withdraw').addEventListener('click', withdrawPoints);
-        document.getElementById('join-btn').addEventListener('click', function () {
-            window.location.href = "https://t.me/earningmoney262"; // Redirects to the provided link
-        });
-
-        function watchAd() {
-            if (typeof show_9092731 === 'function') {
-                show_9092731().then(() => {
-                    watchedAds++;
-                    earnedPoints += 0.1;
-
-                    localStorage.setItem('watchedAds', watchedAds);
-                    localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-
-                    document.getElementById('watched-ads').textContent = watchedAds;
-                    document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-                    updateProgressBar();
-
-                }).catch(err => console.error("Ad failed to load", err));
-            } else {
-                console.warn("Ad function is not available.");
-            }
-        }
-
-        function updateProgressBar() {
-            const progress = (watchedAds % 20) * 5;
-            document.getElementById('progress-circle').style.background = `conic-gradient(#4caf50 ${progress}%, #444 ${progress}%)`;
-            document.getElementById('progress-circle').textContent = `${progress}%`;
-        }
-
-        function toggleWithdraw() {
-            document.getElementById('withdraw-section').classList.toggle('hidden');
-        }
-
-        function withdrawPoints() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const method = document.getElementById('payment-method').value;
-            const phone = document.getElementById('phone-number').value;
-
-            if (amount < 0.30 || amount > earnedPoints) {
-                alert('Invalid withdrawal amount.');
-                return;
-            }
-
-            earnedPoints -= amount;
-            localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-            document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-            const message = `Withdrawal Request: \nAmount: ${amount} BDT\nMethod: ${method}\nPhone: ${phone}`;
-            sendTelegramMessage(message);
-        }
-
-        function sendTelegramMessage(msg) {
-            const botToken = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"; // Your Telegram Bot Token
-            const chatId = "6750345279"; // Your Chat ID
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
-                .then(response => response.json())
-                .then(data => console.log('Message sent to admin'))
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-
-    <script src='//whephiwums.com/vignette.min.js' data-zone='9092731' data-sdk='show_9092731'></script>
-
-</body>
-
-</html><!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Watching Mini App</title>
-    <style>
-        /* Add your styles here */
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <h1>Ad Watching App</h1>
-        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/2</h2>
-
-        <div class="progress-circle" id="progress-circle">0%</div>
-
-        <p>Watched Ads: <span id="watched-ads"></span></p>
-        <p>Earned Points: <span id="earned-points">0.00</span></p>
-
-        <button id="watch-ad-btn">Watch Ad</button>
-        <button id="join-btn">Join Now</button>
-        <button id="withdraw-btn">Withdraw</button>
-
-        <div id="withdraw-section" class="withdraw-section hidden">
-            <h3>Withdraw Funds</h3>
-            <input type="number" id="withdraw-amount" placeholder="Enter Amount">
-            <select id="payment-method">
                 <option value="Manual">Manual</option>
-                <option value="Bkash">Bkash</option>
-                <option value="Nagad">Nagad</option>
             </select>
             <input type="text" id="phone-number" placeholder="Enter Your Number">
-            <input type="text" id="telegram-username" placeholder="Your Telegram Username">
+            <button id="submit-withdraw">Submit</button>
         </div>
-
-        <button id="submit-withdraw">Submit</button>
-
     </div>
 
     <script>
         let watchedAds = parseInt(localStorage.getItem('watchedAds') || 0);
-        let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 8.00);
+        let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 0.00);
 
         document.getElementById('watched-ads').textContent = watchedAds;
         document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
         updateProgressBar();
 
         document.getElementById('watch-ad-btn').addEventListener('click', watchAd);
         document.getElementById('withdraw-btn').addEventListener('click', toggleWithdraw);
         document.getElementById('submit-withdraw').addEventListener('click', withdrawPoints);
         document.getElementById('join-btn').addEventListener('click', function () {
-            window.location.href = "https://t.me/earningmoney262"; // Redirects to the provided link
+            window.location.href = "https://t.me/earningmoney262";
         });
 
         function watchAd() {
-            if (typeof show_9092731 === 'function') {
-                show_9092731().then(() => {
+            if (typeof show_9167658 === 'function') {
+                show_9167658().then(() => {
                     watchedAds++;
                     earnedPoints += 0.1;
 
@@ -191,9 +116,7 @@
 
                     document.getElementById('watched-ads').textContent = watchedAds;
                     document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
                     updateProgressBar();
-
                 }).catch(err => console.error("Ad failed to load", err));
             } else {
                 console.warn("Ad function is not available.");
@@ -202,7 +125,7 @@
 
         function updateProgressBar() {
             const progress = (watchedAds % 20) * 5;
-            document.getElementById('progress-circle').style.background = `conic-gradient(#4caf50 ${progress}%, #444 ${progress}%)`;
+            document.getElementById('progress-circle').style.background = `conic-gradient(#4caf50 ${progress}%, #ccc ${progress}%)`;
             document.getElementById('progress-circle').textContent = `${progress}%`;
         }
 
@@ -215,7 +138,7 @@
             const method = document.getElementById('payment-method').value;
             const phone = document.getElementById('phone-number').value;
 
-            if (amount < 0.30 || amount > earnedPoints) {
+            if (amount < 20 || amount > earnedPoints) {
                 alert('Invalid withdrawal amount.');
                 return;
             }
@@ -224,13 +147,13 @@
             localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
             document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
 
-            const message = `Withdrawal Request: \nAmount: ${amount} BDT\nMethod: ${method}\nPhone: ${phone}`;
+            const message = `Withdrawal Request:\nAmount: ${amount} BDT\nMethod: ${method}\nPhone: ${phone}`;
             sendTelegramMessage(message);
         }
 
         function sendTelegramMessage(msg) {
-            const botToken = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"; // Your Telegram Bot Token
-            const chatId = "6750345279"; // Your Chat ID
+            const botToken = "8057799471:AAEQT5xBJsHOO2ExfmZb71KO0Fyvs--oCI0";
+            const chatId = "7632548225";
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
                 .then(response => response.json())
@@ -239,251 +162,8 @@
         }
     </script>
 
-    <script src='//whephiwums.com/vignette.min.js' data-zone='9092731' data-sdk='show_9092731'></script>
-
-</body>
-
-</html><!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Watching Mini App</title>
-    <style>
-        /* Add your styles here */
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <h1>Ad Watching App</h1>
-        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/2</h2>
-
-        <div class="progress-circle" id="progress-circle">0%</div>
-
-        <p>Watched Ads: <span id="watched-ads"></span></p>
-        <p>Earned Points: <span id="earned-points">0.00</span></p>
-
-        <button id="watch-ad-btn">Watch Ad</button>
-        <button id="join-btn">Join Now</button>
-        <button id="withdraw-btn">Withdraw</button>
-
-        <div id="withdraw-section" class="withdraw-section hidden">
-            <h3>Withdraw Funds</h3>
-            <input type="number" id="withdraw-amount" placeholder="Enter Amount">
-            <select id="payment-method">
-                <option value="Manual">Manual</option>
-                <option value="Bkash">Bkash</option>
-                <option value="Nagad">Nagad</option>
-            </select>
-            <input type="text" id="phone-number" placeholder="Enter Your Number">
-            <input type="text" id="telegram-username" placeholder="Your Telegram Username">
-        </div>
-
-        <button id="submit-withdraw">Submit</button>
-
-    </div>
-
-    <script>
-        let watchedAds = parseInt(localStorage.getItem('watchedAds') || 0);
-        let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 8.00);
-
-        document.getElementById('watched-ads').textContent = watchedAds;
-        document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-        updateProgressBar();
-
-        document.getElementById('watch-ad-btn').addEventListener('click', watchAd);
-        document.getElementById('withdraw-btn').addEventListener('click', toggleWithdraw);
-        document.getElementById('submit-withdraw').addEventListener('click', withdrawPoints);
-        document.getElementById('join-btn').addEventListener('click', function () {
-            window.location.href = "https://t.me/earningmoney262"; // Redirects to the provided link
-        });
-
-        function watchAd() {
-            if (typeof show_9092731 === 'function') {
-                show_9092731().then(() => {
-                    watchedAds++;
-                    earnedPoints += 0.1;
-
-                    localStorage.setItem('watchedAds', watchedAds);
-                    localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-
-                    document.getElementById('watched-ads').textContent = watchedAds;
-                    document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-                    updateProgressBar();
-
-                }).catch(err => console.error("Ad failed to load", err));
-            } else {
-                console.warn("Ad function is not available.");
-            }
-        }
-
-        function updateProgressBar() {
-            const progress = (watchedAds % 20) * 5;
-            document.getElementById('progress-circle').style.background = `conic-gradient(#4caf50 ${progress}%, #444 ${progress}%)`;
-            document.getElementById('progress-circle').textContent = `${progress}%`;
-        }
-
-        function toggleWithdraw() {
-            document.getElementById('withdraw-section').classList.toggle('hidden');
-        }
-
-        function withdrawPoints() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const method = document.getElementById('payment-method').value;
-            const phone = document.getElementById('phone-number').value;
-
-            if (amount < 0.30 || amount > earnedPoints) {
-                alert('Invalid withdrawal amount.');
-                return;
-            }
-
-            earnedPoints -= amount;
-            localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-            document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-            const message = `Withdrawal Request: \nAmount: ${amount} BDT\nMethod: ${method}\nPhone: ${phone}`;
-            sendTelegramMessage(message);
-        }
-
-        function sendTelegramMessage(msg) {
-            const botToken = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"; // Your Telegram Bot Token
-            const chatId = "6750345279"; // Your Chat ID
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
-                .then(response => response.json())
-                .then(data => console.log('Message sent to admin'))
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-
-    <script src='//whephiwums.com/vignette.min.js' data-zone='9092731' data-sdk='show_9092731'></script>
+    <script src='//whephiwums.com/vignette.min.js' data-zone='9167658' data-sdk='show_9167658'></script>
 
 </body>
 
 </html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Watching Mini App</title>
-    <style>
-        /* Add your styles here */
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <h1>Ad Watching App</h1>
-        <h2>সর্বনিম্ন উইন্ডো এমাউন্ট ৳20/2</h2>
-
-        <div class="progress-circle" id="progress-circle">0%</div>
-
-        <p>Watched Ads: <span id="watched-ads"></span></p>
-        <p>Earned Points: <span id="earned-points">0.00</span></p>
-
-        <button id="watch-ad-btn">Watch Ad</button>
-        <button id="join-btn">Join Now</button>
-        <button id="withdraw-btn">Withdraw</button>
-
-        <div id="withdraw-section" class="withdraw-section hidden">
-            <h3>Withdraw Funds</h3>
-            <input type="number" id="withdraw-amount" placeholder="Enter Amount">
-            <select id="payment-method">
-                <option value="Manual">Manual</option>
-                <option value="Bkash">Bkash</option>
-                <option value="Nagad">Nagad</option>
-            </select>
-            <input type="text" id="phone-number" placeholder="Enter Your Number">
-            <input type="text" id="telegram-username" placeholder="Your Telegram Username">
-        </div>
-
-        <button id="submit-withdraw">Submit</button>
-
-    </div>
-
-    <script>
-        let watchedAds = parseInt(localStorage.getItem('watchedAds') || 0);
-        let earnedPoints = parseFloat(localStorage.getItem('earnedPoints') || 8.00);
-
-        document.getElementById('watched-ads').textContent = watchedAds;
-        document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-        updateProgressBar();
-
-        document.getElementById('watch-ad-btn').addEventListener('click', watchAd);
-        document.getElementById('withdraw-btn').addEventListener('click', toggleWithdraw);
-        document.getElementById('submit-withdraw').addEventListener('click', withdrawPoints);
-        document.getElementById('join-btn').addEventListener('click', function () {
-            window.location.href = "https://t.me/earningmoney262"; // Redirects to the provided link
-        });
-
-        function watchAd() {
-            if (typeof show_9092731 === 'function') {
-                show_9092731().then(() => {
-                    watchedAds++;
-                    earnedPoints += 0.1;
-
-                    localStorage.setItem('watchedAds', watchedAds);
-                    localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-
-                    document.getElementById('watched-ads').textContent = watchedAds;
-                    document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-                    updateProgressBar();
-
-                }).catch(err => console.error("Ad failed to load", err));
-            } else {
-                console.warn("Ad function is not available.");
-            }
-        }
-
-        function updateProgressBar() {
-            const progress = (watchedAds % 20) * 5;
-            document.getElementById('progress-circle').style.background = `conic-gradient(#4caf50 ${progress}%, #444 ${progress}%)`;
-            document.getElementById('progress-circle').textContent = `${progress}%`;
-        }
-
-        function toggleWithdraw() {
-            document.getElementById('withdraw-section').classList.toggle('hidden');
-        }
-
-        function withdrawPoints() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const method = document.getElementById('payment-method').value;
-            const phone = document.getElementById('phone-number').value;
-
-            if (amount < 0.30 || amount > earnedPoints) {
-                alert('Invalid withdrawal amount.');
-                return;
-            }
-
-            earnedPoints -= amount;
-            localStorage.setItem('earnedPoints', earnedPoints.toFixed(2));
-            document.getElementById('earned-points').textContent = earnedPoints.toFixed(2);
-
-            const message = `Withdrawal Request: \nAmount: ${amount} BDT\nMethod: ${method}\nPhone: ${phone}`;
-            sendTelegramMessage(message);
-        }
-
-        function sendTelegramMessage(msg) {
-            const botToken = "7590000533:AAEf0oX4oJYz2ZxFYzoraZ183_98u-gc8dQ"; // Your Telegram Bot Token
-            const chatId = "6750345279"; // Your Chat ID
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
-                .then(response => response.json())
-                .then(data => console.log('Message sent to admin'))
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
-
-    <script src='//whephiwums.com/vignette.min.js' data-zone='9092731' data-sdk='show_9092731'></script>
-
-</body>
-
-    </html>
